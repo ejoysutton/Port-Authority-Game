@@ -22,6 +22,8 @@ const gameValues = {
   timeRemaining: 0,
   timerSeconds: 0,
   timeMax: 90,
+  displaySeconds: 0,
+  displayMinutes: 0,
   targetScore: 0,
   userScore: 1000,
   playerWin: false,
@@ -50,6 +52,7 @@ const gameTimeElapsed = {
         this.tickClock();
     	}
   	},
+  	//Calculates the time remaining based on values stored in gameValues. Calls game end function
   	timeRemaining: function(){
   		if (gameValues.timeMax > gameValues.timerSeconds) {
   			gameValues.timeRemaining = gameValues.timeMax - gameValues.timerSeconds;
@@ -59,7 +62,12 @@ const gameTimeElapsed = {
   		}
   	},
 };
-
+$timerConversion = function(seconds) {
+	if (seconds > 0) {
+		gameValues.displaySeconds = seconds%60;
+		gameValues.displayMinutes = Math.floor(seconds/60);
+	}
+};
 
 
 
