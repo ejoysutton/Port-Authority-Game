@@ -68,3 +68,8 @@
 	flex-wrap: wrap;
 	flex-flow: row wrap;
 }
+
+.elementInactive {
+	opacity: 0.5;
+    filter: alpha(opacity=50);
+}
