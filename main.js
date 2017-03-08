@@ -5,7 +5,8 @@ $("#startButton").click(function() {
 	gameValues.userScore = 0;
 	gameValues.targetScore = 1000;
 	$("#startButton").addClass("disabled");
-	$("#acceptCargoButton").removeClass().addClass("btn btn-success");;
+	$("#acceptCargoButton").removeClass().addClass("btn btn-success");
+	if (!gameTimeElapsed.isRunning) {gameTimeElapsed.start();}
 });
 
 //Contains game elements for use in game processing. 
@@ -17,6 +18,7 @@ const gameValues = {
     }
   },
   gameStarted: false,
+  secondsElapsed: 0,
   timerValue: 0,
   targetScore: 0,
   userScore: 1000,
@@ -30,17 +32,22 @@ const gameValues = {
 const gameTimeElapsed = {
 	tickClock: function(){
 		if (gameTimeElapsed.isRunning) {
-			setTimeout(gameTimeElapsed,tickClock, 1000);
-			gameTimeElapsed.addTimeElapsed();
-			//placeholder for display call
-		},
-		isRunning: false,
-		secondsElapsed: ,
-		addTimeElapsed: function() {
-			gameTimeElapsed.secondsElapsed ++;
+			setTimeout(gameTimeElapsed.tickClock, 1000);
+			gameTimeElapsed.addSecond();
 		}
-
-	}
+	},
+	isRunning: false,
+	seconds: 0,
+	addSecond: function(){
+		this.seconds += 1;
+		},
+	start: function(){
+    //called to start the clock, check ifrunning first, then turn one and turn on the tick function
+    if (!this.isRunning) {
+        this.isRunning = true;
+        this.tickClock();
+    	}
+  	},
 };
 
 
@@ -49,37 +56,37 @@ const gameTimeElapsed = {
 
 //Timer functions
 /////////////////////////////////////////////////////////////////
-const gameTimer = {
-  tickClock: function(){
-    if (gameTimer.isRunning) {
-      setTimeout(gameTimer.tickClock, 1000); // trigger next clock tick
-      gameTimer.decreaseOneSecond();
-      AppController.handleClockTick();
-    }
-  },
-  isRunning: false,
-  minutes: 0,
-  seconds: 0,
-  decreaseOneSecond: function(){
-    gameTimer.seconds -= 1;
-    if (gameTimer.seconds = 0) {
-        gameTimer.seconds +59;
-        gameTimer.minutes --;
-    }
-  },
+// const gameTimer = {
+//   tickClock: function(){
+//     if (gameTimer.isRunning) {
+//       setTimeout(gameTimer.tickClock, 1000); // trigger next clock tick
+//       gameTimer.decreaseOneSecond();
+//       AppController.handleClockTick();
+//     }
+//   },
+//   isRunning: false,
+//   minutes: 0,
+//   seconds: 0,
+//   decreaseOneSecond: function(){
+//     gameTimer.seconds -= 1;
+//     if (gameTimer.seconds = 0) {
+//         gameTimer.seconds +59;
+//         gameTimer.minutes --;
+//     }
+//   },
 
-  reset: function(){
-    gameTimer.seconds = 00;
-    gameTimer.minutes = 00;
-  },
+//   reset: function(){
+//     gameTimer.seconds = 00;
+//     gameTimer.minutes = 00;
+//   },
 
-  start: function(){
-    if (!gameTimer.isRunning) {
-        gameTimer.isRunning = true;
-        gameTimer.tickClock();
-    }
-  },
-};
+//   start: function(){
+//     if (!gameTimer.isRunning) {
+//         gameTimer.isRunning = true;
+//         gameTimer.tickClock();
+//     }
+//   },
+// };
 
 // /// User Interface ///
 // const ViewEngine = {
