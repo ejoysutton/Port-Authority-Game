@@ -19,7 +19,9 @@ const gameValues = {
   },
   gameStarted: false,
   secondsElapsed: 0,
-  timerValue: 0,
+  timeRemaining: 0,
+  timerSeconds: 0,
+  timeMax: 90,
   targetScore: 0,
   userScore: 1000,
   playerWin: false,
@@ -34,21 +36,30 @@ const gameTimeElapsed = {
 		if (gameTimeElapsed.isRunning) {
 			setTimeout(gameTimeElapsed.tickClock, 1000);
 			gameTimeElapsed.addSecond();
+			gameTimeElapsed.timeRemaining();
 		}
 	},
 	isRunning: false,
-	seconds: 0,
 	addSecond: function(){
-		this.seconds += 1;
+		gameValues.timerSeconds += 1;
 		},
 	start: function(){
-    //called to start the clock, check ifrunning first, then turn one and turn on the tick function
+    //called to start the clock, check if running first, then turn one and turn on the tick function
     if (!this.isRunning) {
         this.isRunning = true;
         this.tickClock();
     	}
   	},
+  	timeRemaining: function(){
+  		if (gameValues.timeMax > gameValues.timerSeconds) {
+  			gameValues.timeRemaining = gameValues.timeMax - gameValues.timerSeconds;
+  		}
+  		else if (gameValues.timeMax === gameValues.timerSeconds) {
+  			//PLACEHOLDER call game end
+  		}
+  	},
 };
+
 
 
 
