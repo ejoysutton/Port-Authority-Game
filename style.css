@@ -1,31 +1,9 @@
-.leftContainerRowParent {
-	min-width: 440px;
-	min-height: 500px;
-	background-color: grey;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-}
-.leftContainerRow {
-	max-width: 440px;
-	max-height: 500px;
-	background-color: grey;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-}
-.rightContainerRow {
-	width: 200px;
-	float: center;
-	margin: auto;
-/*	flex-direction: column;*/
+.elementInactive {
+	opacity: 0.5;
+    filter: alpha(opacity=50);
 }
 
-.rightContainerParentRow {
-	min-width: 180;
-	margin: auto;
-/*	flex-direction: column;*/
-}
+
 
 .gameBoardDiv {
 	background-color: lightgrey;
@@ -52,7 +30,9 @@
 	background-color: white;
 	border-radius: 5px;
 	color: black;
-
+	float: center;
+	margin: auto;
+	text-align: center;
 }
 
 .cargoTypeOne {
@@ -70,8 +50,37 @@
 .cargoTypeFour {
 	background-color: teal;
 }
+.excludedPiece {
+	background-color: red;
+}
+.leftContainerRowParent {
+	min-width: 440px;
+	min-height: 500px;
+	background-color: grey;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+.leftContainerRow {
+	max-width: 440px;
+	max-height: 500px;
+	background-color: grey;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+.rightContainerRow {
+	width: 200px;
+	float: center-row;
+	margin: auto;
+/*	flex-direction: column;*/
+}
 
-
+.rightContainerParentRow {
+	min-width: 180;
+	margin: auto;
+/*	flex-direction: column;*/
+}
 .mainContainerBox {
 	width: 640px;
 	background-color: black;
@@ -87,7 +96,3 @@
 	flex-flow: row wrap;
 }
 
-.elementInactive {
-	opacity: 0.5;
-    filter: alpha(opacity=50);
-}

@@ -6,6 +6,7 @@ $("#startButton").click(function() {
 	gameValues.targetScore = 1000;
 	$("#startButton").addClass("disabled");
 	$("#acceptCargoButton").removeClass().addClass("btn btn-success");
+	$(".gameBoardBoxBase").removeClass("elementInactive");
 	if (gameValues.gameStarted) {$pullCurrentCargo();}
 	if (!gameTimeElapsed.isRunning) {gameTimeElapsed.start();}
 });
@@ -39,7 +40,7 @@ const gameValues = {
 /////////////////////////////////////////////////////////////////
 //Game Logic section
 //populate random array
-var levelOneRawCargoArray = [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3];
+var levelOneRawCargoArray = [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4];
 var levelOneRandomCargoArray = 
 levelOneRawCargoArray.sort(function(a, b){return 0.5 - Math.random()});
     console.log(levelOneRandomCargoArray);
@@ -124,6 +125,28 @@ $timerConversion = function(seconds) {
 		gameValues.displayMinutes = Math.floor(seconds/60);
 	}
 };
+
+////////////////////////////////////////////////////////////////////
+//Accept Cargo control and Logic
+//onclick, set class to excludedPiece
+// document.getElementById('gameBoardBox1').onclick = console.log("Box Clicked");
+// $("#gameBoardBox1").addClass("excludedPiece"); 
+$("#gameBoardBox1").on("click", (function() {
+	console.log("clicky");
+	// $(this).addClass("excludedPiece");
+    if ($(this).hasClass('excludedPiece')) {
+      $(this).removeClass('excludedPiece');
+    } else {
+      $(this).addClass('excludedPiece');
+    }
+}));
+// $("#gameBoardBox1.excludedPiece").on("click", ($(".excludedPiece")).removeClass("excludedPiece"));
+
+
+
+
+
+
 
 //Populate game board with cargo
 //////////////////////////////////////////////////////////////
