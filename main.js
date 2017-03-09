@@ -1,12 +1,12 @@
 //Handle startButton click, send the boolean to the gameValues const, initialize other data
 $("#startButton").click(function() {
-	console.log("Start clicked!")
+	console.log("Start clicked!");
 	gameValues.gameStarted = true;
 	gameValues.userScore = 0;
 	gameValues.targetScore = 1000;
 	$("#startButton").addClass("disabled");
 	$("#acceptCargoButton").removeClass().addClass("btn btn-success");
-	if (gameValues.gameStarted) {$pullCurrentCargo();};
+	if (gameValues.gameStarted) {$pullCurrentCargo();}
 	if (!gameTimeElapsed.isRunning) {gameTimeElapsed.start();}
 });
 
@@ -32,7 +32,9 @@ const gameValues = {
   targetScore: 0,
   userScore: 1000,
   playerWin: false,
-  }
+  cargoInnerHTML: 0,
+  cargoAddClass:0,
+  };
 
 /////////////////////////////////////////////////////////////////
 //Game Logic section
@@ -45,12 +47,42 @@ levelOneRawCargoArray.sort(function(a, b){return 0.5 - Math.random()});
 //GameBoard manager
 //call at the start of the game and again at each cargoAccept until the array is empty
 $pullCurrentCargo = function() {
-		gameValues.gameBoardBoxOne = levelOneRandomCargoArray.pop();
-		gameValues.gameBoardBoxTwo = levelOneRandomCargoArray.pop();
-		gameValues.gameBoardBoxThree = levelOneRandomCargoArray.pop();
-		gameValues.gameBoardBoxFour = levelOneRandomCargoArray.pop();
+	gameValues.gameBoardBoxOne = levelOneRandomCargoArray.pop();
+		$setCargoType(gameValues.gameBoardBoxOne); 
+			$("#gameBoardBox1").addClass(gameValues.cargoAddClass);
+			$("#gameBoardBox1").text(gameValues.cargoInnerHTML);
+	gameValues.gameBoardBoxTwo = levelOneRandomCargoArray.pop();
+		$setCargoType(gameValues.gameBoardBoxTwo); 
+			$("#gameBoardBox2").addClass(gameValues.cargoAddClass);
+			$("#gameBoardBox2").text(gameValues.cargoInnerHTML);
+	gameValues.gameBoardBoxThree = levelOneRandomCargoArray.pop();
+		$setCargoType(gameValues.gameBoardBoxThree); 
+			$("#gameBoardBox3").addClass(gameValues.cargoAddClass);
+			$("#gameBoardBox3").text(gameValues.cargoInnerHTML);
+	gameValues.gameBoardBoxFour = levelOneRandomCargoArray.pop();
+		$setCargoType(gameValues.gameBoardBoxFour); 
+			$("#gameBoardBox4").addClass(gameValues.cargoAddClass);
+			$("#gameBoardBox4").text(gameValues.cargoInnerHTML);
 	};
-
+$setCargoType = function(boxNumber) {
+	if  (boxNumber === 1) {
+		gameValues.cargoInnerHTML = "lapis";
+		gameValues.cargoAddClass = "cargoTypeOne";
+	}
+	else if (boxNumber === 2) {
+		gameValues.cargoInnerHTML = "amethyst";
+		gameValues.cargoAddClass = "cargoTypeTwo";
+	}
+	else if (boxNumber === 3) {
+		gameValues.cargoInnerHTML = "rose quartz";
+		gameValues.cargoAddClass = "cargoTypeThree";
+	}
+	else if (boxNumber === 4) {
+		gameValues.cargoInnerHTML = "aquamarine";
+		gameValues.cargoAddClass = "cargoTypeFour";
+	}
+	else {}
+};
 
 //////////////////////////////////////////////////////////////////
 //NewTimer 
@@ -93,8 +125,17 @@ $timerConversion = function(seconds) {
 	}
 };
 
-
-
+//Populate game board with cargo
+//////////////////////////////////////////////////////////////
+// $populateGameBoardBox = function() {
+// 	$("#gameBoardBox1").addClass
+// };
+// const cargoPopulate  = {
+// 	getCargoType: function (gameBoardBox) {
+// 		if (gameBoardBox === 1)
+// 	}
+// 	}
+// }
 
 
 //Timer functions

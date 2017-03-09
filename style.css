@@ -15,7 +15,7 @@
 	flex-wrap: wrap;
 }
 .rightContainerRow {
-	width: 200;
+	width: 200px;
 	float: center;
 	margin: auto;
 /*	flex-direction: column;*/
@@ -50,7 +50,25 @@
 	height: 200px;
 	margin: 10px;
 	background-color: white;
+	border-radius: 5px;
+	color: black;
 
+}
+
+.cargoTypeOne {
+	background-color: blue;
+}
+
+.cargoTypeTwo {
+	background-color: purple;
+}
+
+.cargoTypeThree {
+	background-color: pink;
+}
+
+.cargoTypeFour {
+	background-color: teal;
 }
 
 
