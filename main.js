@@ -6,6 +6,7 @@ $("#startButton").click(function() {
 	gameValues.targetScore = 1000;
 	$("#startButton").addClass("disabled");
 	$("#acceptCargoButton").removeClass().addClass("btn btn-success");
+	if (gameValues.gameStarted) {$pullCurrentCargo();};
 	if (!gameTimeElapsed.isRunning) {gameTimeElapsed.start();}
 });
 
@@ -24,11 +25,34 @@ const gameValues = {
   timeMax: 90,
   displaySeconds: 0,
   displayMinutes: 0,
+  gameBoardBoxOne: 0,
+  gameBoardBoxTwo: 0,
+  gameBoardBoxThree: 0,
+  gameBoardBoxFour: 0,
   targetScore: 0,
   userScore: 1000,
   playerWin: false,
   }
 
+/////////////////////////////////////////////////////////////////
+//Game Logic section
+//populate random array
+var levelOneRawCargoArray = [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3];
+var levelOneRandomCargoArray = 
+levelOneRawCargoArray.sort(function(a, b){return 0.5 - Math.random()});
+    console.log(levelOneRandomCargoArray);
+
+//GameBoard manager
+//call at the start of the game and again at each cargoAccept until the array is empty
+$pullCurrentCargo = function() {
+		gameValues.gameBoardBoxOne = levelOneRandomCargoArray.pop();
+		gameValues.gameBoardBoxTwo = levelOneRandomCargoArray.pop();
+		gameValues.gameBoardBoxThree = levelOneRandomCargoArray.pop();
+		gameValues.gameBoardBoxFour = levelOneRandomCargoArray.pop();
+	};
+
+
+//////////////////////////////////////////////////////////////////
 //NewTimer 
 //Use setTimeout to track time in seconds (1000ms per tick)
 //store seconds in var
