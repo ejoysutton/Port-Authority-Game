@@ -165,6 +165,11 @@ $("#gameBoardBox4").on("click", (function() {
 //////////////////////////////////////////////////////////////////
 $("#acceptCargoButton").on("click", (function() {
 	pointCalculator.cargoBoxesTally();
+	$("#gameBoardBox1").removeClass().addClass('gameBoardBoxBase').text('');
+	$("#gameBoardBox2").removeClass().addClass('gameBoardBoxBase').text('');
+	$("#gameBoardBox3").removeClass().addClass('gameBoardBoxBase').text('');
+	$("#gameBoardBox4").removeClass().addClass('gameBoardBoxBase').text('');
+	if (gameValues.gameStarted) {$pullCurrentCargo();};
 }));
 const pointCalculator = {
 	cargoType1: -2,
