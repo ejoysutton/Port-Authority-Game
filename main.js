@@ -164,55 +164,128 @@ $("#gameBoardBox4").on("click", (function() {
 //Accept Cargo Functions
 //////////////////////////////////////////////////////////////////
 $("#acceptCargoButton").on("click", (function() {
-    if ($("#gameBoardBox1").hasClass('excludedPiece')) {
-      $(this).removeClass('excludedPiece', 'cargoTypeOne', 'cargoTypeTwo', 'cargoTypeThree', 'cargoTypeFour');
-    } else {
-      // $("#gameBoardBox1").addClass('excludedPiece');
-    }
+	pointCalculator.cargoBoxesTally();
 }));
 const pointCalculator = {
-	cargoType1: 2,
-	cargiType2: 4,
+	cargoType1: -2,
+	cargoType2: 4,
 	cargoType3: 6,
 	cargoType4: 8,
 	embargoType: 1,
-	subtractPoints: function(){
-		if (this.embargoType === 1){
-			gameValues.userScore -= this.cargoType1;
-			console.log(gameValues.userScore);
+	cargoBoxesTally: function(){
+		if ($("#gameBoardBox1").hasClass('excludedPiece')) {
+
+		} else {
+		//MAKE THIS A FUNCTION TO CALL INSTAED OF REPEATING IT
+			switch(gameValues.gameBoardBoxOne) {
+				case 1:
+				gameValues.userScore += this.cargoType1;
+				break;
+				case 2:
+				gameValues.userScore += this.cargoType2;
+				break;
+				case 3:
+				gameValues.userScore += this.cargoType3;
+				break;
+				case 4:
+				gameValues.userScore += this.cargoType4;
+				break;
+			}
 		}
-		if (this.embargoType === 2){
-			gameValues.userScore -= this.cargoType2;
-			console.log(gameValues.userScore);
+		if ($("#gameBoardBox2").hasClass('excludedPiece')) {
+
+		} else {
+			switch(gameValues.gameBoardBoxTwo) {
+				case 1:
+				gameValues.userScore += this.cargoType1;
+				break;
+				case 2:
+				gameValues.userScore += this.cargoType2;
+				break;
+				case 3:
+				gameValues.userScore += this.cargoType3;
+				break;
+				case 4:
+				gameValues.userScore += this.cargoType4;
+				break;
+			}
 		}
-		if (this.embargoType === 3){
-			gameValues.userScore -= this.cargoType3;
-			console.log(gameValues.userScore);
+		if ($("#gameBoardBox3").hasClass('excludedPiece')) {
+
+		} else {
+			switch(gameValues.gameBoardBoxThree) {
+				case 1:
+				gameValues.userScore += this.cargoType1;
+				break;
+				case 2:
+				gameValues.userScore += this.cargoType2;
+				break;
+				case 3:
+				gameValues.userScore += this.cargoType3;
+				break;
+				case 4:
+				gameValues.userScore += this.cargoType4;
+				break;
+			}
+		if ($("#gameBoardBox4").hasClass('excludedPiece')) {
+
+		} else {
+			switch(gameValues.gameBoardBoxFour) {
+				case 1:
+				gameValues.userScore += this.cargoType1;
+				break;
+				case 2:
+				gameValues.userScore += this.cargoType2;
+				break;
+				case 3:
+				gameValues.userScore += this.cargoType3;
+				break;
+				case 4:
+				gameValues.userScore += this.cargoType4;
+				break;
+
+			}
 		}
-		if (this.embargoType === 4){
-			gameValues.userScore -= this.cargoType4;
-			console.log(gameValues.userScore);
-		}
-	},
-	addPoints: function(){
-		if (this.embargoType !== 1){
-			gameValues.userScore += this.cargoType1;
-			console.log(gameValues.userScore);
-		}
-		if (this.embargoType !== 2){
-			gameValues.userScore = this.cargoType2;
-			console.log(gameValues.userScore);
-		}
-		if (this.embargoType !== 3){
-			gameValues.userScore += this.cargoType3;
-			console.log(gameValues.userScore);
-		}
-		if (this.embargoType !== 4){
-			gameValues.userScore += this.cargoType4;
-			console.log(gameValues.userScore);
-		}
-	},
-};
+}}
+	};
+
+	// subtractPoints: function(){
+	// 	if (this.embargoType === 1, gameValues.){
+	// 		gameValues.userScore -= this.cargoType1;
+	// 		console.log(gameValues.userScore);
+	// 	}
+	// 	if (this.embargoType === 2){
+	// 		gameValues.userScore -= this.cargoType2;
+	// 		console.log(gameValues.userScore);
+	// 	}
+	// 	if (this.embargoType === 3){
+	// 		gameValues.userScore -= this.cargoType3;
+	// 		console.log(gameValues.userScore);
+	// 	}
+	// 	if (this.embargoType === 4){
+	// 		gameValues.userScore -= this.cargoType4;
+	// 		console.log(gameValues.userScore);
+	// 	}
+	// },
+	// addPoints: function(){
+	// 	if (this.embargoType !== 1){
+	// 		gameValues.userScore += this.cargoType1;
+	// 		console.log(gameValues.userScore);
+	// 	}
+	// 	if (this.embargoType !== 2){
+	// 		gameValues.userScore = this.cargoType2;
+	// 		console.log(gameValues.userScore);
+	// 	}
+	// 	if (this.embargoType !== 3){
+	// 		gameValues.userScore += this.cargoType3;
+	// 		console.log(gameValues.userScore);
+	// 	}
+	// 	if (this.embargoType !== 4){
+	// 		gameValues.userScore += this.cargoType4;
+	// 		console.log(gameValues.userScore);
+	// 	}
+	// },
+
 // pointCalculator.embargoPointSet();
 
 // check for bad items
