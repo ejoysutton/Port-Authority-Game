@@ -132,22 +132,97 @@ $timerConversion = function(seconds) {
 // document.getElementById('gameBoardBox1').onclick = console.log("Box Clicked");
 // $("#gameBoardBox1").addClass("excludedPiece"); 
 $("#gameBoardBox1").on("click", (function() {
-	console.log("clicky");
-	// $(this).addClass("excludedPiece");
     if ($(this).hasClass('excludedPiece')) {
       $(this).removeClass('excludedPiece');
     } else {
       $(this).addClass('excludedPiece');
     }
 }));
-// $("#gameBoardBox1.excludedPiece").on("click", ($(".excludedPiece")).removeClass("excludedPiece"));
+$("#gameBoardBox2").on("click", (function() {
+    if ($(this).hasClass('excludedPiece')) {
+      $(this).removeClass('excludedPiece');
+    } else {
+      $(this).addClass('excludedPiece');
+    }
+}));
+$("#gameBoardBox3").on("click", (function() {
+    if ($(this).hasClass('excludedPiece')) {
+      $(this).removeClass('excludedPiece');
+    } else {
+      $(this).addClass('excludedPiece');
+    }
+}));
+$("#gameBoardBox4").on("click", (function() {
+    if ($(this).hasClass('excludedPiece')) {
+      $(this).removeClass('excludedPiece');
+    } else {
+      $(this).addClass('excludedPiece');
+    }
+}));
 
+//////////////////////////////////////////////////////////////////
+//Accept Cargo Functions
+//////////////////////////////////////////////////////////////////
+$("#acceptCargoButton").on("click", (function() {
+    if ($("#gameBoardBox1").hasClass('excludedPiece')) {
+      $(this).removeClass('excludedPiece', 'cargoTypeOne', 'cargoTypeTwo', 'cargoTypeThree', 'cargoTypeFour');
+    } else {
+      // $("#gameBoardBox1").addClass('excludedPiece');
+    }
+}));
+const pointCalculator = {
+	cargoType1: 2,
+	cargiType2: 4,
+	cargoType3: 6,
+	cargoType4: 8,
+	embargoType: 1,
+	subtractPoints: function(){
+		if (this.embargoType === 1){
+			gameValues.userScore -= this.cargoType1;
+			console.log(gameValues.userScore);
+		}
+		if (this.embargoType === 2){
+			gameValues.userScore -= this.cargoType2;
+			console.log(gameValues.userScore);
+		}
+		if (this.embargoType === 3){
+			gameValues.userScore -= this.cargoType3;
+			console.log(gameValues.userScore);
+		}
+		if (this.embargoType === 4){
+			gameValues.userScore -= this.cargoType4;
+			console.log(gameValues.userScore);
+		}
+	},
+	addPoints: function(){
+		if (this.embargoType !== 1){
+			gameValues.userScore += this.cargoType1;
+			console.log(gameValues.userScore);
+		}
+		if (this.embargoType !== 2){
+			gameValues.userScore = this.cargoType2;
+			console.log(gameValues.userScore);
+		}
+		if (this.embargoType !== 3){
+			gameValues.userScore += this.cargoType3;
+			console.log(gameValues.userScore);
+		}
+		if (this.embargoType !== 4){
+			gameValues.userScore += this.cargoType4;
+			console.log(gameValues.userScore);
+		}
+	},
+};
+// pointCalculator.embargoPointSet();
 
+// check for bad items
+// for each bad item - points
+// check for good items
+// for each good item, + points
 
-
-
-
-
+//////////////////////////////////////////////////////////////////
+//OLD PIECES ARCHIVE//////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
 //Populate game board with cargo
 //////////////////////////////////////////////////////////////
 // $populateGameBoardBox = function() {
