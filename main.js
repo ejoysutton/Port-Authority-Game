@@ -102,6 +102,10 @@ const gameTimeElapsed = {
 			setTimeout(gameTimeElapsed.tickClock, 1000);
 			gameTimeElapsed.addSecond();
 			gameTimeElapsed.timeRemaining();
+			gameTimeElapsed.timerConversion(gameValues.timeRemaining);
+			gameTimeElapsed.displayTimeRemaining();
+			$displayUserScore();
+			$displayTargetScore();
 		}
 	},
 	isRunning: false,
@@ -124,14 +128,23 @@ const gameTimeElapsed = {
   			//PLACEHOLDER call game end
   		}
   	},
-};
-$timerConversion = function(seconds) {
+  	timerConversion: function(seconds) {
 	if (seconds > 0) {
 		gameValues.displaySeconds = seconds%60;
 		gameValues.displayMinutes = Math.floor(seconds/60);
-	}
+		}
+	},
+	displayTimeRemaining: function() {
+		$('#seconds').text(gameValues.displaySeconds);
+		$('#minutes').text(gameValues.displayMinutes);
+	},
 };
 
+//   updateTimer: function(minutes, seconds){
+//     document.getElementById('seconds').innerHTML = 
+//     ViewHelpers.zeroFill(gameValues.displaySeconds, 2);
+//     document.getElementById('minutes').innerHTML = 
+//     ViewHelpers.zeroFill(gameValues.displayMinutes, 2);
 ////////////////////////////////////////////////////////////////////
 //Accept Cargo control and Logic
 //onclick, set class to excludedPiece
@@ -263,7 +276,47 @@ const pointCalculator = {
 				gameValues.userScore += this.cargoType4;
 				break;
 
+				}
 			}
 		}
-}}
-	};
+	}
+};
+
+/////////////////////////////////////////////////////////////
+//Diplays
+/////////////////////////////////////////////////////////////
+$displayUserScore = function() {
+	$('#userScoreDiv').text(gameValues.userScore);
+};
+$displayTargetScore = function() {
+	$('#targetScoreDiv').text(gameValues.targetScore);
+};
+
+
+
+
+
+
+// const ViewEngine = {
+//   updateTimer: function(minutes, seconds){
+//     document.getElementById('seconds').innerHTML = 
+//     ViewHelpers.zeroFill(gameValues.displaySeconds, 2);
+//     document.getElementById('minutes').innerHTML = 
+//     ViewHelpers.zeroFill(gameValues.displayMinutes, 2);
+//   },
+//   // updateLapLitDisplay: function(laps){
+//   //   // Your Code Here - skip this
+//   // },
+// };
+// const ViewHelpers = {
+//   zeroFill: function(number, length){
+//     var numberToString = number.toString();
+//     let numberOfZeroesNeeded = (length - numberToString.length, 0);
+//     for( var i = 0; i < (length - numberToString.length); i++){
+//       numberToString = "0" + numberToString;
+//     }
+//     return numberToString;
+//     //checks if timer number is currently at the needed length, if not, adds a zero to the front
+//     //Note: doesn't seem to work if kept as a number, worked once converted to string first. Remember this in future
+//   },
+// };
