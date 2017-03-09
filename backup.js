@@ -45,13 +45,9 @@ var levelOneRandomCargoArray =
 levelOneRawCargoArray.sort(function(a, b){return 0.5 - Math.random()});
     console.log(levelOneRandomCargoArray);
 
-///////////////////////////////////////////////////////////////////////
 //GameBoard manager
-//call at the start of the game and again at each cargoAccept until the 
-//array is empty
-///////////////////////////////////////////////////////////////////////
+//call at the start of the game and again at each cargoAccept until the array is empty
 $pullCurrentCargo = function() {
-	if (levelOneRandomCargoArray.length >= 1) {
 	gameValues.gameBoardBoxOne = levelOneRandomCargoArray.pop();
 		$setCargoType(gameValues.gameBoardBoxOne); 
 			$("#gameBoardBox1").addClass(gameValues.cargoAddClass);
@@ -68,8 +64,7 @@ $pullCurrentCargo = function() {
 		$setCargoType(gameValues.gameBoardBoxFour); 
 			$("#gameBoardBox4").addClass(gameValues.cargoAddClass);
 			$("#gameBoardBox4").text(gameValues.cargoInnerHTML);
-	} else {}
-};
+	};
 $setCargoType = function(boxNumber) {
 	if  (boxNumber === 1) {
 		gameValues.cargoInnerHTML = "lapis";
@@ -94,7 +89,6 @@ $setCargoType = function(boxNumber) {
 //NewTimer 
 //Use setTimeout to track time in seconds (1000ms per tick)
 //store seconds in var
-//////////////////////////////////////////////////////////////////
 
 const gameTimeElapsed = {
 	tickClock: function(){
@@ -135,7 +129,8 @@ $timerConversion = function(seconds) {
 ////////////////////////////////////////////////////////////////////
 //Accept Cargo control and Logic
 //onclick, set class to excludedPiece
-////////////////////////////////////////////////////////////////////
+// document.getElementById('gameBoardBox1').onclick = console.log("Box Clicked");
+// $("#gameBoardBox1").addClass("excludedPiece"); 
 $("#gameBoardBox1").on("click", (function() {
     if ($(this).hasClass('excludedPiece')) {
       $(this).removeClass('excludedPiece');
@@ -169,20 +164,15 @@ $("#gameBoardBox4").on("click", (function() {
 //Accept Cargo Functions
 //////////////////////////////////////////////////////////////////
 $("#acceptCargoButton").on("click", (function() {
-	if (levelOneRandomCargoArray.length >= 1) {
 	pointCalculator.cargoBoxesTally();
 	$("#gameBoardBox1").removeClass().addClass('gameBoardBoxBase').text('');
 	$("#gameBoardBox2").removeClass().addClass('gameBoardBoxBase').text('');
 	$("#gameBoardBox3").removeClass().addClass('gameBoardBoxBase').text('');
 	$("#gameBoardBox4").removeClass().addClass('gameBoardBoxBase').text('');
+	if (levelOneRandomCargoArray.length >= 1) {
 		$pullCurrentCargo();
 	} else {
 	$("#acceptCargoButton").removeClass().addClass("btn btn-success disabled");	
-	$("#gameBoardBox1").removeClass().addClass('gameBoardBoxBase').text('');
-	$("#gameBoardBox2").removeClass().addClass('gameBoardBoxBase').text('');
-	$("#gameBoardBox3").removeClass().addClass('gameBoardBoxBase').text('');
-	$("#gameBoardBox4").removeClass().addClass('gameBoardBoxBase').text('');
-	
 	};
 }));
 const pointCalculator = {
@@ -267,3 +257,152 @@ const pointCalculator = {
 		}
 }}
 	};
+
+	// subtractPoints: function(){
+	// 	if (this.embargoType === 1, gameValues.){
+	// 		gameValues.userScore -= this.cargoType1;
+	// 		console.log(gameValues.userScore);
+	// 	}
+	// 	if (this.embargoType === 2){
+	// 		gameValues.userScore -= this.cargoType2;
+	// 		console.log(gameValues.userScore);
+	// 	}
+	// 	if (this.embargoType === 3){
+	// 		gameValues.userScore -= this.cargoType3;
+	// 		console.log(gameValues.userScore);
+	// 	}
+	// 	if (this.embargoType === 4){
+	// 		gameValues.userScore -= this.cargoType4;
+	// 		console.log(gameValues.userScore);
+	// 	}
+	// },
+	// addPoints: function(){
+	// 	if (this.embargoType !== 1){
+	// 		gameValues.userScore += this.cargoType1;
+	// 		console.log(gameValues.userScore);
+	// 	}
+	// 	if (this.embargoType !== 2){
+	// 		gameValues.userScore = this.cargoType2;
+	// 		console.log(gameValues.userScore);
+	// 	}
+	// 	if (this.embargoType !== 3){
+	// 		gameValues.userScore += this.cargoType3;
+	// 		console.log(gameValues.userScore);
+	// 	}
+	// 	if (this.embargoType !== 4){
+	// 		gameValues.userScore += this.cargoType4;
+	// 		console.log(gameValues.userScore);
+	// 	}
+	// },
+
+// pointCalculator.embargoPointSet();
+
+// check for bad items
+// for each bad item - points
+// check for good items
+// for each good item, + points
+
+//////////////////////////////////////////////////////////////////
+//OLD PIECES ARCHIVE//////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+//Populate game board with cargo
+//////////////////////////////////////////////////////////////
+// $populateGameBoardBox = function() {
+// 	$("#gameBoardBox1").addClass
+// };
+// const cargoPopulate  = {
+// 	getCargoType: function (gameBoardBox) {
+// 		if (gameBoardBox === 1)
+// 	}
+// 	}
+// }
+
+
+//Timer functions
+/////////////////////////////////////////////////////////////////
+// const gameTimer = {
+//   tickClock: function(){
+//     if (gameTimer.isRunning) {
+//       setTimeout(gameTimer.tickClock, 1000); // trigger next clock tick
+//       gameTimer.decreaseOneSecond();
+//       AppController.handleClockTick();
+//     }
+//   },
+//   isRunning: false,
+//   minutes: 0,
+//   seconds: 0,
+//   decreaseOneSecond: function(){
+//     gameTimer.seconds -= 1;
+//     if (gameTimer.seconds = 0) {
+//         gameTimer.seconds +59;
+//         gameTimer.minutes --;
+//     }
+//   },
+
+//   reset: function(){
+//     gameTimer.seconds = 00;
+//     gameTimer.minutes = 00;
+//   },
+
+//   start: function(){
+//     if (!gameTimer.isRunning) {
+//         gameTimer.isRunning = true;
+//         gameTimer.tickClock();
+//     }
+//   },
+// };
+
+// /// User Interface ///
+// const ViewEngine = {
+//   updateTimeDisplay: function(minutes, seconds){
+//     document.getElementById('seconds').innerHTML = 
+//     ViewHelpers.zeroFill(secs, 2);
+//     document.getElementById('minutes').innerHTML = 
+//     ViewHelpers.zeroFill(mins, 2);
+//   },
+// };
+// const ViewHelpers = {
+//   zeroFill: function(number, length){
+//     var numberToString = number.toString();
+//     let numberOfZeroesNeeded = (length - numberToString.length, 0);
+//     for( var i = 0; i < (length - numberToString.length); i++){
+//       numberToString = "0" + numberToString;
+//     }
+//     return numberToString;
+//     //checks if timer number is currently at the needed length, if not, adds a zero to the front
+//     //Note: doesn't seem to work if kept as a number, worked once converted to string first. Remember this in future
+//   },
+// };
+
+// /// Top-Level Application Code ///
+// const AppController = {
+//   //Clicks feed into this
+//   handleClockTick: function(){
+//     ViewEngine.updateTimeDisplay(gameTimer.mins, gameTimer.secs, gameTimer.millisecs);
+//     // Accesses viewengine and updatetimedisplay, feeds them mins, secs and millisecs from gameTimer
+//   },
+//   handleClickStart: function() {
+//     if (!gameTimer.isRunning) { gameTimer.start(); 
+//     }
+//     // onclick (from window.onload) checks if gameTimer isrunning, starts it if not, using start function above
+//   },
+//   handleClickStopReset: function(){
+//     if (gameTimer.isRunning) {
+//       gameTimer.stop();
+//     } else {
+//       ViewEngine.updateTimeDisplay(00, 00);
+//       gameTimer.reset();
+//     }
+//     //onclick (from window.onload) checks if gameTimer isrunning, if it is, stops it by triggering stop function, if not, returns initialized numbers
+//   },
+//   // handleClickLap: function(){
+//   //   // Your Code Here  ---skip this
+//   // }
+// };
+
+// window.onload = function(){
+//   // Attach AppController methods to the DOM as -event handlers- here.  
+//   //Get the html element, listen for click, feed into appcontroler
+//   document.getElementById('start').onclick = AppController.handleClickStart;
+//   document.getElementById('stop').onclick = AppController.handleClickStopReset;
+// };
