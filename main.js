@@ -3,8 +3,8 @@ $("#startButton").click(function() {
 	console.log("Start clicked!");
 	gameValues.gameStarted = true;
 	gameValues.userScore = 0;
-	gameValues.targetScore = 10;
-	gameValues.timeMax = 10;
+	gameValues.targetScore = 100;
+	gameValues.timeMax = 6000;
 	$("#startButton").addClass("disabled");
 	$("#acceptCargoButton").removeClass().addClass("btn btn-success");
 	$(".gameBoardBoxBase").removeClass("elementInactive");
