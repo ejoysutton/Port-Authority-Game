@@ -91,6 +91,21 @@ button {
 .cargoTypeFour {
 	background-color: ;
 }
+
+.infoExclude{
+	background-color: #603C41;
+	border: solid 1px black;
+	border-radius: 5px;
+	padding: 2px;
+}
+
+.infoKeep {
+	background-color: #97967C;
+	border: solid 1px black;
+	border-radius: 5px;
+	padding: 2px;
+}
+
 .excludedPiece {
 	background-color: #603C41;
 }
