@@ -1,14 +1,38 @@
+
+.instructions {
+	width: 650px;
+	background-color: rgba(160,126,91, 0.75);
+	border-radius: 5px;
+	border: solid 2px black;
+	color: #77544C;
+  	display: -webkit-box;
+  	display: -moz-box;
+  	display: -ms-flexbox;
+  	display: -webkit-flex;
+  	display: flex;  
+	-webkit-flex-flow: row wrap;
+	flex-flow: row wrap;
+	font-weight: bold;
+	text-align: center;
+}
+
 h1 {
 	font-size: 4em;
 	font-weight: bold;
 	color: #B2E9DF;
   	text-align: center;
   	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  	display: inline-block;
+    vertical-align: bottom;
 }
 
 button {
 	font-size: 2em;
 	font-weight: bold;
+}
+
+.header{
+	display: inline-block;
 }
 
 .elementInactive {

@@ -1,10 +1,11 @@
 //Handle startButton click, send the boolean to the gameValues const, initialize other data
 $("#startButton").click(function() {
 	console.log("Start clicked!");
+	$('#embargoPiece').modal();
 	gameValues.gameStarted = true;
 	gameValues.userScore = 0;
-	gameValues.targetScore = 100;
-	gameValues.timeMax = 6000;
+	gameValues.targetScore = 350;
+	gameValues.timeMax = 90;
 	$("#startButton").addClass("disabled");
 	$("#acceptCargoButton").removeClass().addClass("btn btn-success");
 	$(".gameBoardBoxBase").removeClass("elementInactive");
@@ -39,7 +40,7 @@ const gameValues = {
 /////////////////////////////////////////////////////////////////
 //Game Logic section
 //populate random array
-var levelOneRawCargoArray = [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4];
+var levelOneRawCargoArray = [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4];
 var levelOneRandomCargoArray = 
 levelOneRawCargoArray.sort(function(a, b){return 0.5 - Math.random()});
     console.log(levelOneRandomCargoArray);
@@ -212,7 +213,7 @@ $("#acceptCargoButton").on("click", (function() {
 }));
 const pointCalculator = {
 	isRunning: true,
-	cargoType1: -2,
+	cargoType1: -10,
 	cargoType2: 4,
 	cargoType3: 6,
 	cargoType4: 8,
@@ -386,7 +387,7 @@ const gameEnd = {
   	gameTimeElapsed.isRunning = false;
   	pointCalculator.isRunning = true;
   	levelOneRawCargoArray.length = 0;
-  	levelOneRawCargoArray.push(1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4);
+  	levelOneRawCargoArray.push(1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4);
   	console.log(levelOneRandomCargoArray);
   	levelOneRandomCargoArray.sort(function(a, b){return 0.5 - Math.random()});
     console.log(levelOneRandomCargoArray);
