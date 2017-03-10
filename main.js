@@ -3,12 +3,13 @@ $("#startButton").click(function() {
 	console.log("Start clicked!");
 	gameValues.gameStarted = true;
 	gameValues.userScore = 0;
-	gameValues.targetScore = 1000;
+	gameValues.targetScore = 10;
 	$("#startButton").addClass("disabled");
 	$("#acceptCargoButton").removeClass().addClass("btn btn-success");
 	$(".gameBoardBoxBase").removeClass("elementInactive");
 	if (gameValues.gameStarted) {$pullCurrentCargo();}
 	if (!gameTimeElapsed.isRunning) {gameTimeElapsed.start();}
+	if (!updateScores.isRunning) {updateScores.start();}
 });
 
 //Contains game elements for use in game processing. 
@@ -20,10 +21,11 @@ const gameValues = {
     }
   },
   gameStarted: false,
+  gameComplete: false,
   secondsElapsed: 0,
   timeRemaining: 0,
   timerSeconds: 0,
-  timeMax: 90,
+  timeMax: 10,
   displaySeconds: 0,
   displayMinutes: 0,
   gameBoardBoxOne: 0,
@@ -35,6 +37,7 @@ const gameValues = {
   playerWin: false,
   cargoInnerHTML: 0,
   cargoAddClass:0,
+  gameResult: false,
   };
 
 /////////////////////////////////////////////////////////////////
@@ -104,8 +107,8 @@ const gameTimeElapsed = {
 			gameTimeElapsed.timeRemaining();
 			gameTimeElapsed.timerConversion(gameValues.timeRemaining);
 			gameTimeElapsed.displayTimeRemaining();
-			$displayUserScore();
-			$displayTargetScore();
+			// $displayUserScore();
+			// $displayTargetScore();
 		}
 	},
 	isRunning: false,
@@ -125,6 +128,7 @@ const gameTimeElapsed = {
   			gameValues.timeRemaining = gameValues.timeMax - gameValues.timerSeconds;
   		}
   		else if (gameValues.timeMax === gameValues.timerSeconds) {
+  			gameEnd.checkWin();
   			//PLACEHOLDER call game end
   		}
   	},
@@ -140,11 +144,6 @@ const gameTimeElapsed = {
 	},
 };
 
-//   updateTimer: function(minutes, seconds){
-//     document.getElementById('seconds').innerHTML = 
-//     ViewHelpers.zeroFill(gameValues.displaySeconds, 2);
-//     document.getElementById('minutes').innerHTML = 
-//     ViewHelpers.zeroFill(gameValues.displayMinutes, 2);
 ////////////////////////////////////////////////////////////////////
 //Accept Cargo control and Logic
 //onclick, set class to excludedPiece
@@ -182,23 +181,30 @@ $("#gameBoardBox4").on("click", (function() {
 //Accept Cargo Functions
 //////////////////////////////////////////////////////////////////
 $("#acceptCargoButton").on("click", (function() {
-	if (levelOneRandomCargoArray.length >= 1) {
+	if (!pointCalculator.isRunning) {
+	
+	} else if (!levelOneRandomCargoArray.length){
+	console.log("ended");
+	pointCalculator.cargoBoxesTally();
+	$("#acceptCargoButton").removeClass().addClass("btn btn-success disabled");	
+	$("#gameBoardBox1").removeClass().addClass('gameBoardBoxBase').text('');
+	$("#gameBoardBox2").removeClass().addClass('gameBoardBoxBase').text('');
+	$("#gameBoardBox3").removeClass().addClass('gameBoardBoxBase').text('');
+	$("#gameBoardBox4").removeClass().addClass('gameBoardBoxBase').text('');
+	pointCalculator.isRunning = false;
+	gameValues.gameComplete = true;
+	} else {
 	pointCalculator.cargoBoxesTally();
 	$("#gameBoardBox1").removeClass().addClass('gameBoardBoxBase').text('');
 	$("#gameBoardBox2").removeClass().addClass('gameBoardBoxBase').text('');
 	$("#gameBoardBox3").removeClass().addClass('gameBoardBoxBase').text('');
 	$("#gameBoardBox4").removeClass().addClass('gameBoardBoxBase').text('');
 		$pullCurrentCargo();
-	} else {
-	$("#acceptCargoButton").removeClass().addClass("btn btn-success disabled");	
-	$("#gameBoardBox1").removeClass().addClass('gameBoardBoxBase').text('');
-	$("#gameBoardBox2").removeClass().addClass('gameBoardBoxBase').text('');
-	$("#gameBoardBox3").removeClass().addClass('gameBoardBoxBase').text('');
-	$("#gameBoardBox4").removeClass().addClass('gameBoardBoxBase').text('');
-	
 	};
+
 }));
 const pointCalculator = {
+	isRunning: true,
 	cargoType1: -2,
 	cargoType2: 4,
 	cargoType3: 6,
@@ -292,7 +298,61 @@ $displayTargetScore = function() {
 	$('#targetScoreDiv').text(gameValues.targetScore);
 };
 
+$finishedBacklog = function() {
+	if (gameValues.gameComplete) {
+		gameEnd.checkWin();
+	}
+};
+// $checkEndArray = function(){
+// 	if (!levelOneRandomCargoArray.length){
+// 		pointCalculator.isRunning = false;
+// 	}
+// }
 
+const updateScores = {
+	tickClock: function(){
+		if (updateScores.isRunning) {
+			setTimeout(updateScores.tickClock, 10);
+			$displayUserScore();
+			$displayTargetScore();
+			$finishedBacklog();
+			// $checkEndArray();
+
+		}
+	},
+	isRunning: false,
+	start: function(){
+    if (!this.isRunning) {
+        this.isRunning = true;
+        this.tickClock();
+    	}
+    },
+    // timeOut: function(){
+    // 	if (){}
+    // },
+};
+
+//////////////////////////////////////////////////////////////
+//GameEnd Methods
+//////////////////////////////////////////////////////////////
+const gameEnd = {
+	checkWin: function(){
+		console.log("Tallying")
+		gameValues.gameComplete = false;
+		if (gameValues.targetScore - gameValues.userScore <= 0 ) {
+			gameValues.gameResult = true;
+		}
+		this.callResult();
+	},
+	callResult: function(){
+		if (gameValues.gameResult) {
+			console.log("you win");
+		} else {
+			console.log("Try again");
+		}
+	},
+
+};
 
 
 
