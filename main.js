@@ -54,36 +54,39 @@ $pullCurrentCargo = function() {
 	gameValues.gameBoardBoxOne = levelOneRandomCargoArray.pop();
 		$setCargoType(gameValues.gameBoardBoxOne); 
 			$("#gameBoardBox1").addClass(gameValues.cargoAddClass);
-			$("#gameBoardBox1").text(gameValues.cargoInnerHTML);
+			$("#gameBoardBoxImage1").attr("src", gameValues.cargoInnerHTML);
+			// $("#gameBoardBox1").text(gameValues.cargoInnerHTML);
 	gameValues.gameBoardBoxTwo = levelOneRandomCargoArray.pop();
 		$setCargoType(gameValues.gameBoardBoxTwo); 
 			$("#gameBoardBox2").addClass(gameValues.cargoAddClass);
-			$("#gameBoardBox2").text(gameValues.cargoInnerHTML);
+			$("#gameBoardBoxImage2").attr("src", gameValues.cargoInnerHTML);
+			// $("#gameBoardBox2").text(gameValues.cargoInnerHTML);
 	gameValues.gameBoardBoxThree = levelOneRandomCargoArray.pop();
 		$setCargoType(gameValues.gameBoardBoxThree); 
 			$("#gameBoardBox3").addClass(gameValues.cargoAddClass);
-			$("#gameBoardBox3").text(gameValues.cargoInnerHTML);
+			$("#gameBoardBoxImage3").attr("src", gameValues.cargoInnerHTML);
+			// $("#gameBoardBox3").text(gameValues.cargoInnerHTML);
 	gameValues.gameBoardBoxFour = levelOneRandomCargoArray.pop();
 		$setCargoType(gameValues.gameBoardBoxFour); 
 			$("#gameBoardBox4").addClass(gameValues.cargoAddClass);
-			$("#gameBoardBox4").text(gameValues.cargoInnerHTML);
+			$("#gameBoardBoxImage4").attr("src", gameValues.cargoInnerHTML);
 	} else {}
 };
 $setCargoType = function(boxNumber) {
 	if  (boxNumber === 1) {
-		gameValues.cargoInnerHTML = "lapis";
+		gameValues.cargoInnerHTML = "chest.png";
 		gameValues.cargoAddClass = "cargoTypeOne";
 	}
 	else if (boxNumber === 2) {
-		gameValues.cargoInnerHTML = "amethyst";
+		gameValues.cargoInnerHTML = "closedBarrel.png";
 		gameValues.cargoAddClass = "cargoTypeTwo";
 	}
 	else if (boxNumber === 3) {
-		gameValues.cargoInnerHTML = "rose quartz";
+		gameValues.cargoInnerHTML = "stoneBarrel.png";
 		gameValues.cargoAddClass = "cargoTypeThree";
 	}
 	else if (boxNumber === 4) {
-		gameValues.cargoInnerHTML = "aquamarine";
+		gameValues.cargoInnerHTML = "waterBarrel.png";
 		gameValues.cargoAddClass = "cargoTypeFour";
 	}
 	else {}
@@ -183,18 +186,26 @@ $("#acceptCargoButton").on("click", (function() {
 	console.log("ended");
 	pointCalculator.cargoBoxesTally();
 	$("#acceptCargoButton").removeClass().addClass("btn btn-success disabled");	
-	$("#gameBoardBox1").removeClass().addClass('gameBoardBoxBase').text('');
-	$("#gameBoardBox2").removeClass().addClass('gameBoardBoxBase').text('');
-	$("#gameBoardBox3").removeClass().addClass('gameBoardBoxBase').text('');
-	$("#gameBoardBox4").removeClass().addClass('gameBoardBoxBase').text('');
+	$("#gameBoardBox1").removeClass().addClass('gameBoardBoxBase');
+	$("#gameBoardBoxImage1").attr("src", '');
+	$("#gameBoardBox2").removeClass().addClass('gameBoardBoxBase');
+	$("#gameBoardBoxImage2").attr("src", '');
+	$("#gameBoardBox3").removeClass().addClass('gameBoardBoxBase');
+	$("#gameBoardBoxImage3").attr("src", '');
+	$("#gameBoardBox4").removeClass().addClass('gameBoardBoxBase');
+	$("#gameBoardBoxImage4").attr("src", '');
 	pointCalculator.isRunning = false;
 	gameValues.gameComplete = true;
 	} else {
 	pointCalculator.cargoBoxesTally();
-	$("#gameBoardBox1").removeClass().addClass('gameBoardBoxBase').text('');
-	$("#gameBoardBox2").removeClass().addClass('gameBoardBoxBase').text('');
-	$("#gameBoardBox3").removeClass().addClass('gameBoardBoxBase').text('');
-	$("#gameBoardBox4").removeClass().addClass('gameBoardBoxBase').text('');
+	$("#gameBoardBox1").removeClass().addClass('gameBoardBoxBase');
+	$("#gameBoardBoxImage1").attr("src", '');
+	$("#gameBoardBox2").removeClass().addClass('gameBoardBoxBase');
+	$("#gameBoardBoxImage2").attr("src", '');
+	$("#gameBoardBox3").removeClass().addClass('gameBoardBoxBase');
+	$("#gameBoardBoxImage3").attr("src", '');
+	$("#gameBoardBox4").removeClass().addClass('gameBoardBoxBase');
+	$("#gameBoardBoxImage4").attr("src", '');
 		$pullCurrentCargo();
 	};
 
@@ -331,10 +342,14 @@ const gameEnd = {
 			gameValues.gameResult = true;
 		}
 		this.callResult();
-		$("#gameBoardBox1").removeClass().addClass('gameBoardBoxBase').text('');
-		$("#gameBoardBox2").removeClass().addClass('gameBoardBoxBase').text('');
-		$("#gameBoardBox3").removeClass().addClass('gameBoardBoxBase').text('');
-		$("#gameBoardBox4").removeClass().addClass('gameBoardBoxBase').text('');
+		$("#gameBoardBox1").removeClass().addClass('gameBoardBoxBase');
+		$("#gameBoardBoxImage1").attr("src", '');
+		$("#gameBoardBox2").removeClass().addClass('gameBoardBoxBase');
+		$("#gameBoardBoxImage2").attr("src", '');
+		$("#gameBoardBox3").removeClass().addClass('gameBoardBoxBase');
+		$("#gameBoardBoxImage3").attr("src", '');
+		$("#gameBoardBox4").removeClass().addClass('gameBoardBoxBase');
+		$("#gameBoardBoxImage4").attr("src", '');
 	},
 	callResult: function(){
 		if (gameValues.gameResult) {
