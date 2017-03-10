@@ -73,6 +73,21 @@ $pullCurrentCargo = function() {
 			$("#gameBoardBoxImage4").attr("src", gameValues.cargoInnerHTML);
 	} else {}
 };
+$pullCurrentCargoNewGame = function() {
+	if (levelOneRandomCargoArray.length >= 1) {
+	gameValues.gameBoardBoxOne = levelOneRandomCargoArray.pop();
+		$setCargoType(gameValues.gameBoardBoxOne); 
+			$("#gameBoardBox1").addClass(gameValues.cargoAddClass);
+	gameValues.gameBoardBoxTwo = levelOneRandomCargoArray.pop();
+		$setCargoType(gameValues.gameBoardBoxTwo); 
+			$("#gameBoardBox2").addClass(gameValues.cargoAddClass);
+	gameValues.gameBoardBoxThree = levelOneRandomCargoArray.pop();
+		$setCargoType(gameValues.gameBoardBoxThree); 
+			$("#gameBoardBox3").addClass(gameValues.cargoAddClass);
+	gameValues.gameBoardBoxFour = levelOneRandomCargoArray.pop();
+		$setCargoType(gameValues.gameBoardBoxFour); 
+	} else {}
+};
 $setCargoType = function(boxNumber) {
 	if  (boxNumber === 1) {
 		gameValues.cargoInnerHTML = "chest.png";
@@ -391,6 +406,7 @@ const gameEnd = {
   	console.log(levelOneRandomCargoArray);
   	levelOneRandomCargoArray.sort(function(a, b){return 0.5 - Math.random()});
     console.log(levelOneRandomCargoArray);
+    $pullCurrentCargoNewGame();
   	$("#startButton").removeClass("disabled");
   	$("#acceptCargoButton").addClass("disabled");
 	$(".gameBoardBoxBase").addClass("elementInactive");
