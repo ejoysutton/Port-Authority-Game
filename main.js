@@ -4,6 +4,7 @@ $("#startButton").click(function() {
 	gameValues.gameStarted = true;
 	gameValues.userScore = 0;
 	gameValues.targetScore = 10;
+	gameValues.timeMax = 10;
 	$("#startButton").addClass("disabled");
 	$("#acceptCargoButton").removeClass().addClass("btn btn-success");
 	$(".gameBoardBoxBase").removeClass("elementInactive");
@@ -33,7 +34,7 @@ const gameValues = {
   gameBoardBoxThree: 0,
   gameBoardBoxFour: 0,
   targetScore: 0,
-  userScore: 1000,
+  userScore: 0,
   playerWin: false,
   cargoInnerHTML: 0,
   cargoAddClass:0,
@@ -343,15 +344,21 @@ const gameEnd = {
 			gameValues.gameResult = true;
 		}
 		this.callResult();
+		$("#gameBoardBox1").removeClass().addClass('gameBoardBoxBase').text('');
+		$("#gameBoardBox2").removeClass().addClass('gameBoardBoxBase').text('');
+		$("#gameBoardBox3").removeClass().addClass('gameBoardBoxBase').text('');
+		$("#gameBoardBox4").removeClass().addClass('gameBoardBoxBase').text('');
 	},
 	callResult: function(){
 		if (gameValues.gameResult) {
 			console.log("you win");
+			$('#winModal').modal()
 		} else {
 			console.log("Try again");
+			$('#loseModal').modal()
 		}
 	},
-
+	resetGame: function;
 };
 
 
