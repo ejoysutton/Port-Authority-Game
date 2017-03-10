@@ -1,3 +1,16 @@
+h1 {
+	font-size: 4em;
+	font-weight: bold;
+	color: #B2E9DF;
+  	text-align: center;
+  	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+button {
+	font-size: 2em;
+	font-weight: bold;
+}
+
 .elementInactive {
 	opacity: 0.5;
     filter: alpha(opacity=50);
@@ -9,10 +22,11 @@
 
 .gameBoardDiv {
 	background-color: #77544C;
-	min-width: 440px;
-	height: 440px;
+	min-width: 438px;
+	height: 438px;
 	padding: 0px;
   	margin: 10px auto;
+  	border: solid 1px black;
   	max-width: 440px;
   	min-height: 400px;
   	border-radius: 5px;
@@ -54,7 +68,7 @@
 	background-color: teal;
 }
 .excludedPiece {
-	background-color: red;
+	background-color: #603C41;
 }
 #leftContainerDivParent {
 	min-width: 460px;
@@ -86,23 +100,25 @@
 /*	flex-direction: column;*/
 }
 .mainContainerBox {
-	width: 640px;
+	width: 650px;
 	background-color: #56383E;
 	border-radius: 5px;
+	border: solid 2px black;
   	display: -webkit-box;
   	display: -moz-box;
   	display: -ms-flexbox;
   	display: -webkit-flex;
   	display: flex;  
   
-  -webkit-flex-flow: row wrap;
-  flex-flow: row wrap;
-  
-  font-weight: bold;
-  text-align: center;
+	-webkit-flex-flow: row wrap;
+	flex-flow: row wrap;
+	  
+	font-weight: bold;
+	text-align: center;
 }
+
 body {
-height: 100%;
+	height: 100%;
     padding: 0;
     margin: auto;
     display: -webkit-box;
@@ -112,5 +128,18 @@ height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    -webkit-flex-flow: row wrap;
+  	flex-flow: column wrap;
+  
+  	font-weight: bold;
+  	text-align: center;
+ 	background-color: #95AAA6;
+}
 
+p {
+	font-weight: bold;
+  	text-align: center;
+  	color: white;
+  	font-size: 1.5em;
+  	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
