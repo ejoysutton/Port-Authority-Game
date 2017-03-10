@@ -16,11 +16,6 @@ $("#startButton").click(function() {
 //Contains game elements for use in game processing. 
 //Will be expanded for icebox elements.
 const gameValues = {
-  PLACEHOLDER: function(){
-    if (gameValues.gameStarted) {
-
-    }
-  },
   gameStarted: false,
   gameComplete: false,
   secondsElapsed: 0,
@@ -304,11 +299,6 @@ $finishedBacklog = function() {
 		gameEnd.checkWin();
 	}
 };
-// $checkEndArray = function(){
-// 	if (!levelOneRandomCargoArray.length){
-// 		pointCalculator.isRunning = false;
-// 	}
-// }
 
 const updateScores = {
 	tickClock: function(){
@@ -328,9 +318,6 @@ const updateScores = {
         this.tickClock();
     	}
     },
-    // timeOut: function(){
-    // 	if (){}
-    // },
 };
 
 //////////////////////////////////////////////////////////////
@@ -338,7 +325,7 @@ const updateScores = {
 //////////////////////////////////////////////////////////////
 const gameEnd = {
 	checkWin: function(){
-		console.log("Tallying")
+		console.log("Tallying");
 		gameValues.gameComplete = false;
 		if (gameValues.targetScore - gameValues.userScore <= 0 ) {
 			gameValues.gameResult = true;
@@ -352,38 +339,44 @@ const gameEnd = {
 	callResult: function(){
 		if (gameValues.gameResult) {
 			console.log("you win");
-			$('#winModal').modal()
+			this.resetGame();
+			$('#winModal').modal();
 		} else {
 			console.log("Try again");
-			$('#loseModal').modal()
+			this.resetGame();
+			$('#loseModal').modal();
+			
 		}
 	},
-	resetGame: function;
+	resetGame: function(){
+	gameValues.gameStarted = false;
+  	gameValues.gameComplete = false;
+  	gameValues.secondsElapsed = 0;
+  	gameValues.timeRemaining = 0;
+  	gameValues.timerSeconds = 0;
+  	gameValues.timeMax = 0;
+  	gameValues.displaySeconds = 0;
+  	gameValues.displayMinutes = 0;
+  	gameValues.gameBoardBoxOne = 0;
+  	gameValues.gameBoardBoxTwo = 0;
+  	gameValues.gameBoardBoxThree = 0;
+  	gameValues.gameBoardBoxFour = 0;
+  	gameValues.targetScore = 0;
+  	gameValues.userScore = 0;
+  	gameValues.playerWin = false;
+  	gameValues.cargoInnerHTML = 0;
+  	gameValues.cargoAddClass = 0;
+  	gameValues.gameResult = false;
+  	updateScores.isRunning = false;
+  	gameTimeElapsed.isRunning = false;
+  	pointCalculator.isRunning = true;
+  	levelOneRawCargoArray.length = 0;
+  	levelOneRawCargoArray.push(1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4);
+  	console.log(levelOneRandomCargoArray);
+  	levelOneRandomCargoArray.sort(function(a, b){return 0.5 - Math.random()});
+    console.log(levelOneRandomCargoArray);
+  	$("#startButton").removeClass("disabled");
+  	$("#acceptCargoButton").addClass("disabled");
+	$(".gameBoardBoxBase").addClass("elementInactive");
+	},
 };
-
-
-
-
-// const ViewEngine = {
-//   updateTimer: function(minutes, seconds){
-//     document.getElementById('seconds').innerHTML = 
-//     ViewHelpers.zeroFill(gameValues.displaySeconds, 2);
-//     document.getElementById('minutes').innerHTML = 
-//     ViewHelpers.zeroFill(gameValues.displayMinutes, 2);
-//   },
-//   // updateLapLitDisplay: function(laps){
-//   //   // Your Code Here - skip this
-//   // },
-// };
-// const ViewHelpers = {
-//   zeroFill: function(number, length){
-//     var numberToString = number.toString();
-//     let numberOfZeroesNeeded = (length - numberToString.length, 0);
-//     for( var i = 0; i < (length - numberToString.length); i++){
-//       numberToString = "0" + numberToString;
-//     }
-//     return numberToString;
-//     //checks if timer number is currently at the needed length, if not, adds a zero to the front
-//     //Note: doesn't seem to work if kept as a number, worked once converted to string first. Remember this in future
-//   },
-// };
